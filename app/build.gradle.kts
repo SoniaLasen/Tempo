@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-    id("com.google.devtools.ksp") version "1.9.23-1.0.20"
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
@@ -33,23 +32,24 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.12"
+        kotlinCompilerExtensionVersion = "1.5.13"
     }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
@@ -73,7 +73,8 @@ dependencies {
     // Room
 
     implementation (libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
+    //noinspection UseTomlInstead,KaptUsageInsteadOfKsp
+    kapt ("androidx.room:room-compiler:2.6.1")
 
     //  Dagger Hilt
     implementation (libs.hilt.android)
