@@ -1,5 +1,6 @@
 package com.example.tempo.components
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -39,4 +40,15 @@ fun MainTextField(value: String, onValueChange: (String) -> Unit, label: String)
             .padding(bottom = 15.dp)
 
     )
+}
+
+//componente para el cronómetro
+@SuppressLint("DefaultLocale")
+@Composable //aunque es un composable, la función se pone con la primera letra en minúscula ya que devuelve un valor, en este caso un String
+fun formatTiempo(tiempo: Long): String{
+    val segundos = (tiempo/1000) % 60
+    val minutos = (tiempo/1000/60) % 60
+    val horas = tiempo/1000/3600
+
+    return String.format("%02d:%02d:%02d", horas, minutos, segundos)
 }
