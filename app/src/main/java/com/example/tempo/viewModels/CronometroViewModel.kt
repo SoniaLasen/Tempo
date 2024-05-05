@@ -15,7 +15,7 @@ class CronometroViewModel: ViewModel() {
     var state by mutableStateOf(CronoState())//() en CronoState significan que de principio está vacío
         private set
 
-    var cronoJob by mutableStateOf<Job?>(null)//definimos aquí estas variables porque necesitamos tener un acceso
+    private var cronoJob by mutableStateOf<Job?>(null)//definimos aquí estas variables porque necesitamos tener un acceso
         //continuo que sería difícil de manejar desde el state.
         private set
 
