@@ -5,19 +5,20 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tempo.viewModels.CronometroViewModel
+import com.example.tempo.viewModels.CronosViewModel
 import com.example.tempo.views.AddView
 import com.example.tempo.views.EditView
 import com.example.tempo.views.HomeView
 
 @Composable
-fun NavManager(cronometroViewModel: CronometroViewModel){
+fun NavManager(cronometroViewModel: CronometroViewModel, cronosViewModel: CronosViewModel){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "Home"){
         composable("Home"){
             HomeView(navController)
         }
         composable("AddView"){
-            AddView(navController, cronometroViewModel)
+            AddView(navController, cronometroViewModel, cronosViewModel)
         }
         composable("EditView"){
             EditView(navController)
