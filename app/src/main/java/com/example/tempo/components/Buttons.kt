@@ -16,9 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.tempo.R
 
 @Composable
 fun FloatButton(onClick: () -> Unit) {
@@ -55,7 +53,7 @@ fun CircleButton(
         modifier = Modifier.padding(15.dp)// se aplica a lo que hay alrededor del botón, como un margen
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.play),
+            painter = icon,
             contentDescription = "",
             modifier = Modifier.size(24.dp)
         )
