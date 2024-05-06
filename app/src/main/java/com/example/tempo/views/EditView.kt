@@ -16,6 +16,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -79,6 +80,10 @@ fun ContentEditView(
         cronometroViewModel.cronos()
     }
 
+    LaunchedEffect(Unit) {
+        cronometroViewModel.getCronoById(id)
+    }
+
     Column(
         modifier = Modifier
             .padding(it)
@@ -111,23 +116,8 @@ fun ContentEditView(
             ) {
                 cronometroViewModel.pausar()
             }
-
-            CircleButton(
-                icon = painterResource(id = R.drawable.stop),
-                enabled = !state.cronometroActivo
-            ) {
-                cronometroViewModel.detener()
-            }
-
-            CircleButton(
-                icon = painterResource(id = R.drawable.save),
-                enabled = state.showSaveButton
-            ) {
-                cronometroViewModel.showTextField()
-            }
         }
 
-        if (state.showTextField) {
             MainTextField(
                 value = state.title,
                 onValueChange = { cronometroViewModel.onValue(it) },
@@ -135,8 +125,9 @@ fun ContentEditView(
             )
 
             Button(onClick = {
-                cronosViewModel.addCrono(
+                cronosViewModel.updateCrono(
                     Cronos(
+                        id= id,
                         title = state.title,
                         crono = cronometroViewModel.tiempo
                     )
@@ -147,6 +138,11 @@ fun ContentEditView(
             }) {
                 Text(text = "Guardar")
             }
+        DisposableEffect(Unit) {
+            onDispose {
+                cronometroViewModel.detener()
+            }
         }
+
     }
 }
