@@ -44,7 +44,8 @@ class CronometroViewModel: ViewModel() {
         state = state.copy(
             cronometroActivo = false,
             showSaveButton = false,
-            showTextField = false
+            showTextField = false,
+            title = ""
         )
     }
 
